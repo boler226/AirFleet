@@ -155,12 +155,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/models/Ticket.cpp",
+			"path" : "src/models/cpp/Ticket.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/models/Ticket.h",
+			"path" : "src/models/headers/Ticket.h",
 			"sourceGroupIndex" : 1
 		}
 	],

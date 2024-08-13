@@ -27,12 +27,12 @@ private:
 public:
     Flight();	// Конструктор за замовчуванням
     Flight(   // Конструктор з параметрами
-            int num,
+            int flightNumber,
             Destination& whence,
             Destination& whither,
-            const std::vector<Destination>& stops,
-            const std::time_t& time,
-            const std::time_t& days,
+            const std::vector<Destination>& intermeditateStops,
+            const std::time_t& departureTime,
+            const std::time_t& flightDays,
             int availableSeats,
             const std::vector<Ticket>& seats,
             Plane& plane
