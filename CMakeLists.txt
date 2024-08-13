@@ -9,4 +9,6 @@ add_executable(AirFleet main.cpp
         src/interfaces/Destination.cpp
         src/interfaces/Destination.h
         src/models/cpp/Plane.cpp
-        src/models/headers/Plane.h)
+        src/models/headers/Plane.h
+        src/models/cpp/Ticket.cpp
+        src/models/headers/Ticket.h)

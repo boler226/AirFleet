@@ -73,6 +73,12 @@ build CMakeFiles/AirFleet.dir/src/models/cpp/Plane.cpp.obj: CXX_COMPILER__AirFle
   OBJECT_DIR = CMakeFiles\AirFleet.dir
   OBJECT_FILE_DIR = CMakeFiles\AirFleet.dir\src\models\cpp
 
+build CMakeFiles/AirFleet.dir/src/models/Ticket.cpp.obj: CXX_COMPILER__AirFleet_unscanned_Debug C$:/Users/User/CLionProjects/AirFleet/src/models/Ticket.cpp || cmake_object_order_depends_target_AirFleet
+  DEP_FILE = CMakeFiles\AirFleet.dir\src\models\Ticket.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\AirFleet.dir
+  OBJECT_FILE_DIR = CMakeFiles\AirFleet.dir\src\models
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target AirFleet
@@ -81,7 +87,7 @@ build CMakeFiles/AirFleet.dir/src/models/cpp/Plane.cpp.obj: CXX_COMPILER__AirFle
 #############################################
 # Link the executable AirFleet.exe
 
-build AirFleet.exe: CXX_EXECUTABLE_LINKER__AirFleet_Debug CMakeFiles/AirFleet.dir/main.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/Flight.cpp.obj CMakeFiles/AirFleet.dir/src/interfaces/Destination.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/Plane.cpp.obj
+build AirFleet.exe: CXX_EXECUTABLE_LINKER__AirFleet_Debug CMakeFiles/AirFleet.dir/main.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/Flight.cpp.obj CMakeFiles/AirFleet.dir/src/interfaces/Destination.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/Plane.cpp.obj CMakeFiles/AirFleet.dir/src/models/Ticket.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\AirFleet.dir

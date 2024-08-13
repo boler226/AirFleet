@@ -8,8 +8,9 @@
 #include <string>
 #include <vector>
 #include <ctime>
-#include "../../interfaces//Destination.h";
-#include "Plane.h";
+#include "../../interfaces//Destination.h"
+#include "Ticket.h"
+#include "Plane.h"
 
 class Flight
 {
@@ -21,6 +22,7 @@ private:
     std::time_t departureTime;	// Час відправлення
     std::time_t  flightDays;	// Дні польоту
     int availableSeats;	// Кількість вільних місць
+    std::vector<Ticket> seats;
     Plane plane;	// Літак
 public:
     Flight();	// Конструктор за замовчуванням
@@ -31,7 +33,8 @@ public:
             const std::vector<Destination>& stops,
             const std::time_t& time,
             const std::time_t& days,
-            int seats,
+            int availableSeats,
+            const std::vector<Ticket>& seats,
             Plane& plane
     );
     Flight(const Flight& other);	// Конструктор копіювання
