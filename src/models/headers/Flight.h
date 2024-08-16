@@ -40,9 +40,6 @@ public:
     Flight(const Flight& other);	// Конструктор копіювання
     Flight(Flight&& other) noexcept;	// Конструктор переміщення
     ~Flight();	// Деструктор
-
-
-    static void showInfo();
 };
 
 

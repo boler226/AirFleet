@@ -55,8 +55,8 @@ Flight::Flight(const Flight& other)
 
 Flight::Flight(Flight&& other) noexcept
         : flightNumber(other.flightNumber),
-          whence(std::move(other.whence)),
-          whither(std::move(other.whither)),
+          whence(other.whence),
+          whither(other.whither),
           intermeditateStops(std::move(other.intermeditateStops)),
           departureTime(other.departureTime),
           flightDays(other.flightDays),
