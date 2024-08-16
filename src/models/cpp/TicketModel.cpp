@@ -4,10 +4,11 @@
 
 #include "../headers/TicketModel.h"
 
+
 TicketModel::TicketModel()
         : firstName(),
           lastName(),
-          seat(),
+          seats(),
           numberSeats(0),
           whence(),
           whither()
@@ -24,7 +25,7 @@ TicketModel::TicketModel(
         )
         : firstName(firstName),
           lastName(lastName),
-          seat(seat),
+          seats(seats),
           numberSeats(numberSeats),
           whence(whence),
           whither(whither)
@@ -34,7 +35,7 @@ TicketModel::TicketModel(
 TicketModel::TicketModel(const TicketModel& other)
         : firstName(other.firstName),
           lastName(other.lastName),
-          seat(other.seat),
+          seats(other.seats),
           numberSeats(other.numberSeats),
           whence(other.whence),
           whither(other.whither)
@@ -44,7 +45,7 @@ TicketModel::TicketModel(const TicketModel& other)
 TicketModel::TicketModel(TicketModel &&other) noexcept
         : firstName(other.firstName),
           lastName(other.lastName),
-          seat(std::move(other.seat)),
+          seats(std::move(other.seats)),
           numberSeats(other.numberSeats),
           whence(other.whence),
           whither(other.whither)
@@ -52,4 +53,18 @@ TicketModel::TicketModel(TicketModel &&other) noexcept
 }
 
 TicketModel::~TicketModel() {
+}
+
+[[nodiscard]] std::string TicketModel::toString() const {
+    std::stringstream model; // Для форматування складних рядків
+    model << firstName << ", " << lastName << ", ";
+
+    for (int i = 0; i < seats.size() - 1; i++) {
+        model << seats[i];
+        if (i != seats.size() - 1) {
+            model << ", ";
+        }
+    }
+    model << whence.toString() << ", " << whither.toString();
+    return model.str();
 }

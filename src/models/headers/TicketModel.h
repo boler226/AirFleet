@@ -8,13 +8,14 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <sstream>
 #include "../../interfaces//Destination.h";
 
 class TicketModel {
 private:
     std::string firstName;
     std::string lastName;
-    std::vector<int> seat; // Місця в літаку
+    std::vector<int> seats; // Місця в літаку
     int numberSeats; // Кількість місць
     Destination whence;   // Звідки
     Destination whither;   // Куди
@@ -23,7 +24,7 @@ public:
     TicketModel(    // Конструктор з параметрами
             std::string& firstName,
             std::string& lastName,
-            const std::vector<int>& seat,
+            const std::vector<int>& seats,
             int numberSeats,
             Destination& whence,
             Destination& whither
@@ -31,6 +32,8 @@ public:
     TicketModel(const TicketModel& other);    // Конструктор копіювання
     TicketModel(TicketModel&& other) noexcept;    // Конструктор переміщення
     ~TicketModel();  // Деструктор
+
+    [[nodiscard]] std::string toString() const; // Обов'язково використати результат при поверненні із функції
 };
 
 
