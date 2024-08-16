@@ -21,10 +21,10 @@ private:
 public:
     TicketModel();   // Конструктор за замовчуванням
     TicketModel(    // Конструктор з параметрами
-            std::string first,
-            std::string last,
-            const std::vector<int> seat,
-            int num,
+            std::string& firstName,
+            std::string& lastName,
+            const std::vector<int>& seat,
+            int numberSeats,
             Destination& whence,
             Destination& whither
             );
