@@ -4,31 +4,31 @@
 
 #include <utility>
 
-#include "../headers/Plane.h"
+#include "../headers/PlaneModel.h"
 
-Plane::Plane()
+PlaneModel::PlaneModel()
         : name(),
           maxSeats(0)
 {
 }
 
-Plane::Plane(std::string name, int maxSeats)
+PlaneModel::PlaneModel(std::string name, int maxSeats)
         : name(std::move(name)),
           maxSeats(maxSeats)
 {
 }
 
-Plane::Plane(const Plane& other)
+PlaneModel::PlaneModel(const PlaneModel& other)
         : name(other.name),
           maxSeats(other.maxSeats)
 {
 }
 
-Plane::Plane(Plane&& other) noexcept
+PlaneModel::PlaneModel(PlaneModel&& other) noexcept
         : name(std::move(other.name)),
           maxSeats(other.maxSeats)
 {
 }
 
-Plane::~Plane(){
+PlaneModel::~PlaneModel(){
 }

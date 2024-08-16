@@ -2,15 +2,15 @@
 // Created by User on 13.08.2024.
 //
 
-#ifndef AIRFLEET_TICKET_H
-#define AIRFLEET_TICKET_H
+#ifndef AIRFLEET_TICKETMODEL_H
+#define AIRFLEET_TICKETMODEL_H
 
 #pragma once
 #include <string>
 #include <vector>
 #include "../../interfaces//Destination.h";
 
-class Ticket {
+class TicketModel {
 private:
     std::string firstName;
     std::string lastName;
@@ -19,8 +19,8 @@ private:
     Destination whence;   // Звідки
     Destination whither;   // Куди
 public:
-    Ticket();   // Конструктор за замовчуванням
-    Ticket(    // Конструктор з параметрами
+    TicketModel();   // Конструктор за замовчуванням
+    TicketModel(    // Конструктор з параметрами
             std::string first,
             std::string last,
             const std::vector<int> seat,
@@ -28,10 +28,10 @@ public:
             Destination& whence,
             Destination& whither
             );
-    Ticket(const Ticket& other);    // Конструктор копіювання
-    Ticket(Ticket&& other) noexcept;    // Конструктор переміщення
-    ~Ticket();  // Деструктор
+    TicketModel(const TicketModel& other);    // Конструктор копіювання
+    TicketModel(TicketModel&& other) noexcept;    // Конструктор переміщення
+    ~TicketModel();  // Деструктор
 };
 
 
-#endif //AIRFLEET_TICKET_H
+#endif //AIRFLEET_TICKETMODEL_H
