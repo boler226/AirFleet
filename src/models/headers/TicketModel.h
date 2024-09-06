@@ -22,12 +22,12 @@ private:
 public:
     TicketModel();   // Конструктор за замовчуванням
     TicketModel(    // Конструктор з параметрами
-            std::string& firstName,
-            std::string& lastName,
+            const std::string& firstName,
+            const std::string& lastName,
             const std::vector<int>& seats,
             int numberSeats,
-            Destination& whence,
-            Destination& whither
+            const Destination& whence,
+            const Destination& whither
             );
     TicketModel(const TicketModel& other);    // Конструктор копіювання
     TicketModel(TicketModel&& other) noexcept;    // Конструктор переміщення

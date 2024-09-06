@@ -13,4 +13,6 @@ add_executable(AirFleet main.cpp
         src/models/cpp/TicketModel.cpp
         src/models/headers/TicketModel.h
         src/controllers/cpp/FlightController.cpp
-        src/controllers/headers/FlightController.h)
+        src/controllers/headers/FlightController.h
+        src/models/SeederData.cpp
+        src/models/SeederData.h)

@@ -16,12 +16,12 @@ TicketModel::TicketModel()
 }
 
 TicketModel::TicketModel(
-        std::string& firstName,
-        std::string& lastName,
-        const std::vector<int>& seat,
+        const std::string& firstName,
+        const std::string& lastName,
+        const std::vector<int>& seats,
         int numberSeats,
-        Destination& whence,
-        Destination& whither
+        const Destination& whence,
+        const Destination& whither
         )
         : firstName(firstName),
           lastName(lastName),
