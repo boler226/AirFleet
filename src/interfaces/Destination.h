@@ -7,6 +7,7 @@
 
 
 #pragma once
+#include <string>
 #include <vector>
 
 struct CountryInfo {
@@ -16,7 +17,12 @@ struct CountryInfo {
 
 class Destination
 {
+private:
+    const CountryInfo& info;
 public:
+    Destination();
+    [[nodiscard]] std::string toString() const; // Обов'язково використати результат при поверненні із функції
+    static const CountryInfo Empty;
     static const CountryInfo Albania;
     static const CountryInfo Andorra;
     static const CountryInfo Armenia;

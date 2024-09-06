@@ -3,3 +3,11 @@
 //
 
 #include "../headers/FlightController.h"
+
+FlightController::FlightController() {
+
+}
+
+std::future<std::string> FlightController::Upload() {
+
+}

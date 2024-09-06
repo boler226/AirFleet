@@ -1,5 +1,15 @@
 #include "Destination.h"
 
+Destination::Destination()
+        : info(Destination::Empty)
+{
+}
+
+std::string Destination::toString() const {
+    return std::string(info.name);
+}
+
+const CountryInfo Destination::Empty = { "", {} };
 const CountryInfo Destination::Albania = { "Albania", {"Tirana", "Durres", "Vlore", "Shkoder"} };
 const CountryInfo Destination::Andorra = { "Andorra", {"Andorra la Vella", "Escaldes-Engordany", "Encamp", "La Massana"} };
 const CountryInfo Destination::Armenia = { "Armenia", {"Yerevan", "Gyumri", "Vanadzor", "Hrazdan"} };

@@ -15,7 +15,7 @@ private:
     std::vector<FlightModel> flights;
 public:
     FlightController();
-    FlightController(std::vector<FlightModel> flights);
+    // FlightController(std::vector<FlightModel> flights);
 
 
     std::future<std::string> List();

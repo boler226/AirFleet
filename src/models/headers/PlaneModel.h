@@ -15,11 +15,13 @@ private:
     std::string name;
     const int maxSeats;
 public:
-    PlaneModel();
+    PlaneModel();   // Конструктор за замовчуванням
     PlaneModel(std::string name, int maxSeats);   // Конструктор з параметрами
     PlaneModel(const PlaneModel& other);	// Конструктор копіювання
     PlaneModel(PlaneModel&& other) noexcept;	// Конструктор переміщення
     ~PlaneModel();	// Деструктор
+
+    [[nodiscard]] std::string toString() const; // Обов'язково використати результат при поверненні із функції
 };
 
 

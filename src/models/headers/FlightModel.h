@@ -6,6 +6,8 @@
 
 #pragma once
 #include <string>
+#include <fstream>
+#include <iostream>
 #include <vector>
 #include <ctime>
 #include "../../interfaces//Destination.h"
@@ -18,7 +20,7 @@ private:
     int flightNumber;	// Номер рейсу
     Destination whence;   // Звідки
     Destination whither;   // Куди
-    std::vector<Destination> intermeditateStops;	// Пункти проміжної посадки
+    std::vector<Destination> intermediateStops;	// Пункти проміжної посадки
     std::time_t departureTime;	// Час відправлення
     std::time_t  flightDays;	// Дні польоту
     int availableSeats;	// Кількість вільних місць
@@ -30,7 +32,7 @@ public:
             int flightNumber,
             Destination& whence,
             Destination& whither,
-            const std::vector<Destination>& intermeditateStops,
+            const std::vector<Destination>& intermediateStops,
             const std::time_t& departureTime,
             const std::time_t& flightDays,
             int availableSeats,
@@ -40,6 +42,9 @@ public:
     FlightModel(const FlightModel& other);	// Конструктор копіювання
     FlightModel(FlightModel&& other) noexcept;	// Конструктор переміщення
     ~FlightModel();	// Деструктор
+
+    static std::string formatData(const FlightModel& model);
+    void saveDataToFile(const FlightModel& model, const std::string& fileName);
 };
 
 

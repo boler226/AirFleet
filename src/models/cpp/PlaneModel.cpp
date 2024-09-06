@@ -32,3 +32,7 @@ PlaneModel::PlaneModel(PlaneModel&& other) noexcept
 
 PlaneModel::~PlaneModel(){
 }
+
+std::string PlaneModel::toString() const {
+    return name + "(" + std::to_string(maxSeats) + ")";
+}

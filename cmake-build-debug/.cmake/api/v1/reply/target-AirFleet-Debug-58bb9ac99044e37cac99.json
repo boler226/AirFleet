@@ -125,12 +125,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/models/cpp/Flight.cpp",
+			"path" : "src/models/cpp/FlightModel.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/models/headers/Flight.h",
+			"path" : "src/models/headers/FlightModel.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -147,23 +147,23 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/models/cpp/Plane.cpp",
+			"path" : "src/models/cpp/PlaneModel.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/models/headers/Plane.h",
+			"path" : "src/models/headers/PlaneModel.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/models/cpp/Ticket.cpp",
+			"path" : "src/models/cpp/TicketModel.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/models/headers/Ticket.h",
+			"path" : "src/models/headers/TicketModel.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -174,7 +174,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/controllers/cpp/FlightController.h",
+			"path" : "src/controllers/headers/FlightController.h",
 			"sourceGroupIndex" : 1
 		}
 	],

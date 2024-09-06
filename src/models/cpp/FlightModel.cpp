@@ -11,7 +11,7 @@ FlightModel::FlightModel()
           availableSeats(0),
           whence(),
           whither(),
-          intermeditateStops(),
+          intermediateStops(),
           seats(),
           plane()
 {
@@ -21,7 +21,7 @@ FlightModel::FlightModel(
         int flightNumber,
         Destination& whence,
         Destination& whither,
-        const std::vector<Destination>& intermeditateStops,
+        const std::vector<Destination>& intermediateStops,
         const std::time_t& departureTime,
         const std::time_t& flightDays,
         int availableSeats,
@@ -31,7 +31,7 @@ FlightModel::FlightModel(
         : flightNumber(flightNumber),
           whence(whence),
           whither(whither),
-          intermeditateStops(intermeditateStops),
+          intermediateStops(intermediateStops),
           departureTime(departureTime),
           flightDays(flightDays),
           availableSeats(availableSeats),
@@ -44,7 +44,7 @@ FlightModel::FlightModel(const FlightModel& other)
         : flightNumber(other.flightNumber),
           whence(other.whence),
           whither(other.whither),
-          intermeditateStops(other.intermeditateStops),
+          intermediateStops(other.intermediateStops),
           departureTime(other.departureTime),
           flightDays(other.flightDays),
           availableSeats(other.availableSeats),
@@ -57,7 +57,7 @@ FlightModel::FlightModel(FlightModel&& other) noexcept
         : flightNumber(other.flightNumber),
           whence(other.whence),
           whither(other.whither),
-          intermeditateStops(std::move(other.intermeditateStops)),
+          intermediateStops(std::move(other.intermediateStops)),
           departureTime(other.departureTime),
           flightDays(other.flightDays),
           availableSeats(other.availableSeats),
@@ -67,4 +67,45 @@ FlightModel::FlightModel(FlightModel&& other) noexcept
 }
 
 FlightModel::~FlightModel() {
+}
+
+std::string FlightModel::formatData(const FlightModel& model) {
+    std::string data;
+    data += "Flight Number: " + std::to_string(model.flightNumber) + "\n";
+    data += "Whence Time: " + model.whence.toString() + "\n";
+    data += "Whither Time: " + model.whither.toString() + "\n";
+
+    for(int i = 0; i < model.intermediateStops.size(); i++)
+    {
+        data += "Intermedia Stop: " + model.intermediateStops[i].toString() + "\n";
+    }
+    data += "Departure Time: " + std::to_string(model.departureTime) + "\n";
+    data += "Flight Days: " + std::to_string(model.flightDays) + "\n";
+    data += "Available Seats: " + std::to_string(model.availableSeats) + "\n";
+
+    for (const TicketModel& ticket : model.seats)
+    {
+        data += "Ticket Information: " + ticket.toString() + "\n";
+    }
+
+    data += "Plane: " + model.plane.toString();
+
+    return data;
+}
+
+void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fileName) {
+    std::ofstream outFile(fileName);
+
+    if (!outFile) {
+        std::cerr << "Error: Could not open the file for writing!" << std::endl;
+        return;
+    }
+
+    std::string flightData = model.formatData(model);
+
+    outFile << flightData;
+
+    outFile.close();
+
+    std::cout << "Data has been written to the file successfully!" << std::endl;
 }
