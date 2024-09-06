@@ -11,3 +11,11 @@ FlightController::FlightController() {
 std::future<std::string> FlightController::Upload() {
 
 }
+
+std::future<std::string> FlightController::Create(FlightModel model) {
+    return std::async(std::launch::async, [this, model]() -> std::string {
+       flights.push_back(model);
+
+       FlightModel::saveDataToFile(model, "flight_data_" + std::to_string(model.getFlightNumber()) + ".txt");
+    });
+}

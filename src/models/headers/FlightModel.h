@@ -44,7 +44,9 @@ public:
     ~FlightModel();	// Деструктор
 
     static std::string formatData(const FlightModel& model);
-    void saveDataToFile(const FlightModel& model, const std::string& fileName);
+    static void saveDataToFile(const FlightModel& model, const std::string& fileName);
+
+    int getFlightNumber() const;
 };
 
 
