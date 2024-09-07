@@ -94,14 +94,23 @@ std::string FlightModel::formatData(const FlightModel& model) {
 }
 
 void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fileName) {
-    std::ofstream outFile(fileName);
+    std::filesystem::path filePath = std::filesystem::current_path() / "../info" / fileName;
+
+    // Перевіряємо, чи існує папка, і створюємо її, якщо необхідно
+    std::filesystem::path infoDir = filePath.parent_path();
+    if (!std::filesystem::exists(infoDir)) {
+        std::filesystem::create_directory(infoDir);
+    }
+
+
+    std::ofstream outFile(filePath);
 
     if (!outFile) {
-        std::cerr << "Error: Could not open the file for writing!" << std::endl;
+        std::cerr << "Error: Could not open the file for writing!" << filePath << std::endl;
         return;
     }
 
-    std::string flightData = model.formatData(model);
+    std::string flightData = FlightModel::formatData(model);
 
     outFile << flightData;
 

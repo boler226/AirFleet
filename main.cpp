@@ -1,6 +1,9 @@
 #include <iostream>
+#include "src/models/SeederData.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    SeederData seeder;
+
+    seeder.SeedData();
     return 0;
 }

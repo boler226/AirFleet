@@ -1,3 +1,18 @@
 # ninja log v5
 1	785	7452662862636862	CMakeFiles/AirFleet.dir/main.cpp.obj	f0110b23fe4b1a46
 788	1012	7452662864873760	AirFleet.exe	c222e97e1b1af800
+73	1491	7474186254538218	CMakeFiles/AirFleet.dir/src/models/cpp/PlaneModel.cpp.obj	739739a7233b718a
+66	1519	7474186254663477	CMakeFiles/AirFleet.dir/src/models/cpp/TicketModel.cpp.obj	a2e9b5374e6e46ab
+54	1532	7474186254887644	CMakeFiles/AirFleet.dir/src/interfaces/Destination.cpp.obj	650678d16f1e4dd1
+49	1561	7474186255314052	CMakeFiles/AirFleet.dir/src/models/cpp/FlightModel.cpp.obj	4c82663aceddcadd
+5	1876	7474186258482954	CMakeFiles/AirFleet.dir/main.cpp.obj	f0110b23fe4b1a46
+58	2278	7474186262479100	CMakeFiles/AirFleet.dir/src/controllers/cpp/FlightController.cpp.obj	53f4ee1a03224eb8
+82	2375	7474186263475618	CMakeFiles/AirFleet.dir/src/models/SeederData.cpp.obj	e997d9403d4bb3d8
+2376	3038	7474186270063325	AirFleet.exe	7cb3bf696b3bee07
+5	1332	7474190106761029	CMakeFiles/AirFleet.dir/main.cpp.obj	f0110b23fe4b1a46
+10	1404	7474190107509936	CMakeFiles/AirFleet.dir/src/models/cpp/FlightModel.cpp.obj	4c82663aceddcadd
+14	1777	7474190111216834	CMakeFiles/AirFleet.dir/src/controllers/cpp/FlightController.cpp.obj	53f4ee1a03224eb8
+19	1968	7474190113134939	CMakeFiles/AirFleet.dir/src/models/SeederData.cpp.obj	e997d9403d4bb3d8
+1969	2302	7474190116443256	AirFleet.exe	7cb3bf696b3bee07
+4	1101	7474193461906096	CMakeFiles/AirFleet.dir/src/models/cpp/FlightModel.cpp.obj	4c82663aceddcadd
+1102	1430	7474193465149850	AirFleet.exe	7cb3bf696b3bee07
