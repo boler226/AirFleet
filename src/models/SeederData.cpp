@@ -3,6 +3,10 @@
 //
 #include "SeederData.h"
 
+SeederData::SeederData() {
+
+}
+
 std::future<std::string> SeederData::SeedData() {
     return std::async(std::launch::async, [this]() -> std::string {
 
@@ -13,8 +17,6 @@ std::future<std::string> SeederData::SeedData() {
 
         std::vector<FlightModel> testFlights = {
                 FlightModel(1, (Destination &) Destination::Albania, (Destination &) Destination::Andorra, {(Destination &) Destination::Belgium, (Destination &) Destination::Croatia}, 0, 0, 21, {ticket1}, plane1),
-                FlightModel(/* аргументи конструктора */),
-                FlightModel(/* аргументи конструктора */)
         };
 
         std::vector<std::future<std::string>> results;

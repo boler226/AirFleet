@@ -13,7 +13,7 @@ private:
     FlightController flightController;
 
 public:
-    SeederData(FlightController controller) : flightController(controller) {}
+    SeederData();
 
     std::future<std::string> SeedData();
 };
