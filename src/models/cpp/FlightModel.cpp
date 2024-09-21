@@ -94,14 +94,15 @@ std::string FlightModel::formatData(const FlightModel& model) {
 }
 
 void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fileName) {
-    std::filesystem::path filePath = std::filesystem::current_path() / "../info" / fileName;
+    std::filesystem::path filePath = std::filesystem::current_path() / "..\\info" / fileName;
+
+    std::cout << "File path: " << filePath << std::endl;
 
     // Перевіряємо, чи існує папка, і створюємо її, якщо необхідно
     std::filesystem::path infoDir = filePath.parent_path();
     if (!std::filesystem::exists(infoDir)) {
         std::filesystem::create_directory(infoDir);
     }
-
 
     std::ofstream outFile(filePath);
 
@@ -111,9 +112,7 @@ void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fi
     }
 
     std::string flightData = FlightModel::formatData(model);
-
     outFile << flightData;
-
     outFile.close();
 
     std::cout << "Data has been written to the file successfully!" << std::endl;

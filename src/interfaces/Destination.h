@@ -11,8 +11,8 @@
 #include <vector>
 
 struct CountryInfo {
-    const char* name;
-    std::vector<const char*> cities;
+    const std::string name;
+    std::vector<std::string> cities;
 };
 
 class Destination

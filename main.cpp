@@ -1,4 +1,3 @@
-#include <iostream>
 #include "src/models/SeederData.h"
 
 int main() {
