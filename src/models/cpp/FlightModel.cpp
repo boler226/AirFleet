@@ -117,7 +117,3 @@ void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fi
 
     std::cout << "Data has been written to the file successfully!" << std::endl;
 }
-
-int FlightModel::getFlightNumber() const {
-    return flightNumber;
-}

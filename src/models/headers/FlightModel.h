@@ -47,7 +47,28 @@ public:
     static std::string formatData(const FlightModel& model);
     static void saveDataToFile(const FlightModel& model, const std::string& fileName);
 
-    int getFlightNumber() const;
+
+    // Setters
+    void setFlightNumber(int number) { flightNumber = number; }
+    void setWhence(const Destination& from) { whence = from; }
+    void setWhither(const Destination& to) { whither = to; }
+    void setIntermediateStops(const std::vector<Destination>& stops) { intermediateStops = stops; }
+    void setDepartureTime(std::time_t time) { departureTime = time; }
+    void setFlightDays(std::time_t days) { flightDays = days; }
+    void setAvailableSeats(int seats) { availableSeats = seats; }
+    void setSeats(const std::vector<TicketModel>& ticketSeats) { this->seats = ticketSeats; }
+    void setPlane(const PlaneModel& model) { plane = model; }
+
+    // Getters
+    [[nodiscard]] int getFlightNumber() const { return flightNumber; }
+    [[nodiscard]] Destination getWhence() const { return whence; }
+    [[nodiscard]] Destination getWhither() const { return whither; }
+    [[nodiscard]] std::vector<Destination> getIntermediateStops() const { return intermediateStops; }
+    [[nodiscard]] std::time_t getDepartureTime() const { return departureTime; }
+    [[nodiscard]] std::time_t getFlightDays() const { return flightDays; }
+    [[nodiscard]] int getAvailableSeats() const { return availableSeats; }
+    [[nodiscard]] std::vector<TicketModel> getSeats() const { return seats; }
+    [[nodiscard]] PlaneModel getPlane() const { return plane; }
 };
 
 
