@@ -55,6 +55,20 @@ TicketModel::TicketModel(TicketModel &&other) noexcept
 TicketModel::~TicketModel() {
 }
 
+// Оператор присвоєння
+TicketModel& TicketModel::operator=(const TicketModel& other) {
+    if (this != &other) {
+        firstName = other.firstName;
+        lastName = other.lastName;
+        seats = other.seats;
+        numberSeats = other.numberSeats;
+        whence = other.whence;
+        whither = other.whither;
+    }
+
+    return *this;
+}
+
 [[nodiscard]] std::string TicketModel::toString() const {
     std::stringstream model; // Для форматування складних рядків
     model << firstName << ", " << lastName << ", ";

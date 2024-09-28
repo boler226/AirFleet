@@ -11,6 +11,13 @@ Destination::Destination(CountryInfo  countryInfo)
 {
 }
 
+Destination &Destination::operator=(const Destination &other) {
+    if (this != &other) {
+        info = other.info;
+    }
+    return *this;
+}
+
 Destination Destination::fromString(const std::string &str) {
     if (!str.empty()) {
         auto item = countries.find(str);

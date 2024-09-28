@@ -33,6 +33,16 @@ PlaneModel::PlaneModel(PlaneModel&& other) noexcept
 PlaneModel::~PlaneModel(){
 }
 
+// Оператор присвоєння
+PlaneModel& PlaneModel::operator=(const PlaneModel& other) {
+    if (this != &other) {
+        name = other.name;
+        maxSeats = other.maxSeats;
+    }
+    return *this;
+}
+
+
 std::string PlaneModel::toString() const {
     return name + "(" + std::to_string(maxSeats) + ")";
 }
