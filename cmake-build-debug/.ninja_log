@@ -52,3 +52,8 @@
 38	2119	7486275238425948	CMakeFiles/AirFleet.dir/src/controllers/cpp/FlightController.cpp.obj	53f4ee1a03224eb8
 48	2358	7486275240794060	CMakeFiles/AirFleet.dir/src/models/SeederData.cpp.obj	e997d9403d4bb3d8
 2358	2717	7486275244346799	AirFleet.exe	7cb3bf696b3bee07
+47	1643	7492411610832795	CMakeFiles/AirFleet.dir/src/models/cpp/TicketModel.cpp.obj	a2e9b5374e6e46ab
+38	1701	7492411611428489	CMakeFiles/AirFleet.dir/src/interfaces/Destination.cpp.obj	650678d16f1e4dd1
+3	2341	7492411617858950	CMakeFiles/AirFleet.dir/main.cpp.obj	f0110b23fe4b1a46
+56	3059	7492411625001381	CMakeFiles/AirFleet.dir/src/models/SeederData.cpp.obj	e997d9403d4bb3d8
+51	3300	7492411627425313	CMakeFiles/AirFleet.dir/src/controllers/cpp/FlightController.cpp.obj	53f4ee1a03224eb8
