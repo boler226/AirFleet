@@ -31,8 +31,8 @@ public:
     FlightModel();	// Конструктор за замовчуванням
     FlightModel(   // Конструктор з параметрами
             int flightNumber,
-            Destination& whence,
-            Destination& whither,
+            Destination whence,
+            Destination whither,
             const std::vector<Destination>& intermediateStops,
             const std::time_t& departureTime,
             const std::time_t& flightDays,
@@ -45,6 +45,7 @@ public:
     ~FlightModel();	// Деструктор
 
     static std::string formatData(const FlightModel& model);
+    static FlightModel fromFile(const std::string& filePath);
     static void saveDataToFile(const FlightModel& model, const std::string& fileName);
 
 

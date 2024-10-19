@@ -3,6 +3,6 @@
 int main() {
     SeederData seeder;
 
-    seeder.SeedData();
+    seeder.SeedData().get();
     return 0;
 }

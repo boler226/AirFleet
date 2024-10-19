@@ -19,8 +19,8 @@ FlightModel::FlightModel()
 
 FlightModel::FlightModel(
         int flightNumber,
-        Destination& whence,
-        Destination& whither,
+        Destination whence,
+        Destination whither,
         const std::vector<Destination>& intermediateStops,
         const std::time_t& departureTime,
         const std::time_t& flightDays,
@@ -91,6 +91,37 @@ std::string FlightModel::formatData(const FlightModel& model) {
     data += "Plane: " + model.plane.toString();
 
     return data;
+}
+
+FlightModel FlightModel::fromFile(const std::string &filePath) {
+    FlightModel model;
+    std::ifstream file(filePath);
+
+    if(!file) {
+        std::cerr << "Error: Could not open the file " << filePath << std::endl;
+        return model;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.find("Flight Number:") != std::string::npos) {
+            // Витягуємо частину рядка після "Flight Number:"
+            std::string flightNumberStr = line.substr(line.find(":") + 1);
+            // Вирізаємо пробіли з початку рядка
+            flightNumberStr.erase(0, flightNumberStr.find_first_not_of(" \t"));
+
+            // Перетворюємо рядок на число
+            model.flightNumber = std::stoi(flightNumberStr);
+        }
+        if (line.find("Whence Time:") != std::string::npos) {
+            // Витягуємо частину рядка після "Whence Time:"
+            std::string whenceTimeStr = line.substr(line.find(":") + 1);
+            // Вирізаємо пробіли з початку рядка
+            whenceTimeStr.erase(0, whenceTimeStr.find_first_not_of(" \t"));
+
+            model.whence = Destination::fromString(whenceTimeStr);
+        }
+    }
 }
 
 void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fileName) {

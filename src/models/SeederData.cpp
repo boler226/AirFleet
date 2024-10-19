@@ -17,15 +17,16 @@ std::future<std::string> SeederData::SeedData() {
 
             if(std::filesystem::is_empty(filePath))
             {
-                TicketModel ticket1("John", "Doe", {1, 2, 3}, 3,
-                                    (Destination &) "Albania", (Destination &) "Andorra");
+                TicketModel ticket1("John", "Doe", {1, 2}, 3,
+                                    Destination::fromString("Hungary"), Destination::fromString("Andorra"));
                 PlaneModel plane1("AAN 120", 120);
 
 
                 std::vector<FlightModel> testFlights = {
-                        FlightModel(1, (Destination &) "Albania", (Destination &) "Andorra", {(Destination &) "Belgium", (Destination &) "Croatia"}, 0, 0, 21, {ticket1}, plane1),
+                        FlightModel(1, Destination::fromString("Albania"), Destination::fromString("Andorra"),
+                                    {Destination::fromString("Belgium"), Destination::fromString("Croatia")},
+                                    0, 0, 21, {ticket1}, plane1),
                 };
-
                 std::vector<std::future<std::string>> results;
                 for (const auto& flight : testFlights) {
                     results.push_back(flightController.Create(flight));
