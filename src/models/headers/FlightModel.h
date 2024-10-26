@@ -47,6 +47,10 @@ public:
     static std::string formatData(const FlightModel& model);
     static FlightModel fromFile(const std::string& filePath);
     static void saveDataToFile(const FlightModel& model, const std::string& fileName);
+    static std::string timeToString(time_t timeValue);
+    static time_t stringToTime(const std::string& timeStr);
+    static std::string getFlight(const FlightModel& model);
+
 
 
     // Setters

@@ -79,8 +79,8 @@ std::string FlightModel::formatData(const FlightModel& model) {
     {
         data += "Intermedia Stop: " + model.intermediateStops[i].toString() + "\n";
     }
-    data += "Departure Time: " + std::to_string(model.departureTime) + "\n";
-    data += "Flight Days: " + std::to_string(model.flightDays) + "\n";
+    data += "Departure Time: " + timeToString(model.departureTime) + "\n";
+    data += "Flight Days: " + timeToString(model.flightDays) + "\n";
     data += "Available Seats: " + std::to_string(model.availableSeats) + "\n";
 
     for (const TicketModel& ticket : model.seats)
@@ -147,4 +147,63 @@ void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fi
     outFile.close();
 
     std::cout << "Data has been written to the file successfully!" << std::endl;
+}
+
+time_t FlightModel::stringToTime(const std::string& timeStr) {
+    std::tm tm = {};
+    int year, month, day, hour, minute, second;
+    char dash1, dash2, colon1, colon2;
+
+    std::istringstream ss(timeStr);
+    if (ss >> year >> dash1 >> month >> dash2 >> day >> hour >> colon1 >> minute >> colon2 >> second) {
+        if (dash1 != '-' || dash2 != '-' || colon1 != ':' || colon2 != ':') {
+            throw std::runtime_error("Invalid time format");
+        }
+        tm = {0};
+        tm.tm_year = year - 1900;
+        tm.tm_mon = month - 1;
+        tm.tm_mday = day;
+        tm.tm_hour = hour;
+        tm.tm_min = minute;
+        tm.tm_sec = second;
+    } else {
+        throw std::runtime_error("Invalid time format");
+    }
+
+    // Конвертуємо std::tm у time_t
+    return std::mktime(&tm);
+}
+
+std::string FlightModel::timeToString(time_t timeValue) {
+    if (timeValue == 0) {
+        return "Invalid time";
+    }
+
+    std::tm* tmPtr = std::localtime(&timeValue); // Конвертуємо time_t в tm
+
+    std::stringstream ss;
+    ss << std::put_time(tmPtr, "%Y-%m-%d %H:%M:%S");
+
+    return ss.str();
+}
+
+std::string FlightModel::getFlight(const FlightModel &model) {
+    std::ostringstream result;
+    std::string stops;
+
+    for (auto& stop : model.intermediateStops) {
+        stops += stop.toString() + ", ";
+    }
+    stops.resize(stops.size() - 2);
+
+    result << "Flight Number: " << model.getFlightNumber() << " | "
+           << "Whence: " << model.getWhence().toString() << " | "
+           << "Whither: " << model.getWhither().toString() << " | "
+           << "Intermedia Stop: " << stops << " | "
+           << "Departure Time: " << timeToString(model.getDepartureTime()) << " | "
+           << "Flight Days: " << timeToString(model.getFlightDays()) << " | "
+           << "Available Seats: " << model.getAvailableSeats() << " | "
+           << "Plane: " << model.getPlane().toString() << " | ";
+
+    return result.str();
 }
