@@ -55,18 +55,30 @@ TicketModel::TicketModel(TicketModel &&other) noexcept
 TicketModel::~TicketModel() {
 }
 
-// Оператор присвоєння
-TicketModel& TicketModel::operator=(const TicketModel& other) {
-    if (this != &other) {
-        firstName = other.firstName;
-        lastName = other.lastName;
-        seats = other.seats;
-        numberSeats = other.numberSeats;
-        whence = other.whence;
-        whither = other.whither;
+TicketModel TicketModel::fromString(const std::string& str) {
+    if (str.empty()) {
+        throw std::runtime_error("Input string is empty!");
     }
 
-    return *this;
+    std::istringstream ss(str);
+    TicketModel ticket;
+
+    std::string seatStr, whenceStr, whitherStr;
+    if (std::getline(ss, ticket.firstName, ',') &&
+        std::getline(ss, ticket.lastName, ',') &&
+        std::getline(ss, seatStr, ',') &&
+        std::getline(ss, whenceStr, ',') &&
+        std::getline(ss, whitherStr)) {
+
+        ticket.numberSeats = std::stoi(seatStr);
+        ticket.whence = Destination::fromString(whenceStr.erase(0,1));
+        ticket.whither = Destination::fromString(whitherStr.erase(0,1));
+
+        for (int i = 1; i <= ticket.numberSeats; ++i) {
+            ticket.seats.push_back(i);
+        }
+    }
+    return ticket;
 }
 
 [[nodiscard]] std::string TicketModel::toString() const {

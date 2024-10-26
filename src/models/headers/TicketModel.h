@@ -33,7 +33,7 @@ public:
     TicketModel(TicketModel&& other) noexcept;    // Конструктор переміщення
     ~TicketModel();  // Деструктор
 
-    TicketModel& operator=(const TicketModel& other);
+    static TicketModel fromString(const std::string& str);
 
     [[nodiscard]] std::string toString() const; // Обов'язково використати результат при поверненні із функції
 };
