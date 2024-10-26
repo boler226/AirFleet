@@ -18,8 +18,8 @@ public:
     // FlightController(std::vector<FlightModel> flights);
 
 
-    std::future<std::string> List();
-    std::future<std::string> Create(FlightModel model);
+    std::future<void> List();
+    std::future<std::string> Create(const FlightModel& model);
     std::future<std::string> Update(FlightModel model);
     std::future<std::string> Delete(int flightNumber);
 
