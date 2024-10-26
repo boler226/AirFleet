@@ -21,9 +21,11 @@ public:
     PlaneModel(PlaneModel&& other) noexcept;	// Конструктор переміщення
     ~PlaneModel();	// Деструктор
 
-    PlaneModel& operator=(const PlaneModel& other);
+    static PlaneModel fromString(const std::string& str);
 
     [[nodiscard]] std::string toString() const; // Обов'язково використати результат при поверненні із функції
+
+    PlaneModel& operator=(const PlaneModel& other);
 };
 
 
