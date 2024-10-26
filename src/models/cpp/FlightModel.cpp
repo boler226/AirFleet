@@ -93,7 +93,7 @@ std::string FlightModel::formatData(const FlightModel& model) {
     return data;
 }
 
-FlightModel FlightModel::fromFile(const std::string &filePath) {
+FlightModel FlightModel::fromFile(const std::filesystem::path& filePath) {
     FlightModel model;
     std::ifstream file(filePath);
 
@@ -105,23 +105,61 @@ FlightModel FlightModel::fromFile(const std::string &filePath) {
     std::string line;
     while (std::getline(file, line)) {
         if (line.find("Flight Number:") != std::string::npos) {
-            // Витягуємо частину рядка після "Flight Number:"
-            std::string flightNumberStr = line.substr(line.find(":") + 1);
-            // Вирізаємо пробіли з початку рядка
+            std::string flightNumberStr = line.substr(line.find(':') + 1);
             flightNumberStr.erase(0, flightNumberStr.find_first_not_of(" \t"));
 
-            // Перетворюємо рядок на число
-            model.flightNumber = std::stoi(flightNumberStr);
+            model.setFlightNumber(std::stoi(flightNumberStr));
         }
         if (line.find("Whence Time:") != std::string::npos) {
-            // Витягуємо частину рядка після "Whence Time:"
-            std::string whenceTimeStr = line.substr(line.find(":") + 1);
-            // Вирізаємо пробіли з початку рядка
+            std::string whenceTimeStr = line.substr(line.find(':') + 1);
             whenceTimeStr.erase(0, whenceTimeStr.find_first_not_of(" \t"));
 
-            model.whence = Destination::fromString(whenceTimeStr);
+            model.setWhence(Destination::fromString(whenceTimeStr));
+        }
+        if (line.find("Whither Time:") != std::string::npos) {
+            std::string whiterTimeStr = line.substr(line.find(':') + 1);
+            whiterTimeStr.erase(0, whiterTimeStr.find_first_not_of(" \t"));
+
+            model.setWhither(Destination::fromString(whiterTimeStr));
+        }
+        if (line.find("Intermedia Stop:") != std::string::npos) {
+            std::string intermediaStopStr = line.substr(line.find(':') + 1);
+            intermediaStopStr.erase(0, intermediaStopStr.find_first_not_of(" \t"));
+
+            model.intermediateStops.push_back(Destination::fromString(intermediaStopStr));
+        }
+        if (line.find("Departure Time:") != std::string::npos) {
+            std::string departureTimeStr = line.substr(line.find(':') + 1);
+            departureTimeStr.erase(0, departureTimeStr.find_first_not_of(" \t"));
+
+            model.setDepartureTime(stringToTime(departureTimeStr));
+        }
+        if (line.find("Flight Days:") != std::string::npos) {
+            std::string flightDaysStr = line.substr(line.find(':') + 1);
+            flightDaysStr.erase(0, flightDaysStr.find_first_not_of(" \t"));
+
+            model.setFlightDays(stringToTime(flightDaysStr));
+        }
+        if (line.find("Available Seats:") != std::string::npos) {
+            std::string availableSeats = line.substr(line.find(':') + 1);
+            availableSeats.erase(0, availableSeats.find_first_not_of(" \t"));
+
+            model.setAvailableSeats(std::stoi(availableSeats));
+        }
+        if (line.find("Ticket Information:") != std::string::npos) {
+            std::string ticketInformation = line.substr(line.find(':') + 1);
+            ticketInformation.erase(0, ticketInformation.find_first_not_of(" \t"));
+
+            model.seats.push_back(TicketModel::fromString(ticketInformation));
+        }
+        if (line.find("Plane:") != std::string::npos) {
+            std::string plane = line.substr(line.find(':') + 1);
+            plane.erase(0, plane.find_first_not_of(" \t"));
+
+            model.setPlane(PlaneModel::fromString(plane));
         }
     }
+    return model;
 }
 
 void FlightModel::saveDataToFile(const FlightModel &model, const std::string &fileName) {

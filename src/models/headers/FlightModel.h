@@ -45,7 +45,7 @@ public:
     ~FlightModel();	// Деструктор
 
     static std::string formatData(const FlightModel& model);
-    static FlightModel fromFile(const std::string& filePath);
+    static FlightModel fromFile(const std::filesystem::path& filePath);
     static void saveDataToFile(const FlightModel& model, const std::string& fileName);
     static std::string timeToString(time_t timeValue);
     static time_t stringToTime(const std::string& timeStr);
@@ -61,8 +61,8 @@ public:
     void setDepartureTime(std::time_t time) { departureTime = time; }
     void setFlightDays(std::time_t days) { flightDays = days; }
     void setAvailableSeats(int seats) { availableSeats = seats; }
-    void setSeats(const std::vector<TicketModel>& ticketSeats) { this->seats = ticketSeats; }
-    void setPlane(const PlaneModel& model) { plane = model; }
+    static void setSeats(const std::vector<TicketModel>& ticketSeats) { std::move(ticketSeats); }
+    void setPlane(const PlaneModel& model) { plane = std::move(model); }
 
     // Getters
     [[nodiscard]] int getFlightNumber() const { return flightNumber; }
