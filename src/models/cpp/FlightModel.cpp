@@ -19,13 +19,13 @@ FlightModel::FlightModel()
 
 FlightModel::FlightModel(
         int flightNumber,
-        Destination whence,
-        Destination whither,
+        const Destination& whence,
+        const Destination& whither,
         const std::vector<Destination>& intermediateStops,
         const std::time_t& departureTime,
         const std::time_t& flightDays,
         int availableSeats,
-        const std::vector<TicketModel>& seats,
+        const std::vector<std::shared_ptr<TicketModel>>& seats,
         PlaneModel& plane
 )
         : flightNumber(flightNumber),
@@ -40,18 +40,23 @@ FlightModel::FlightModel(
 {
 }
 
-FlightModel::FlightModel(const FlightModel& other)
-        : flightNumber(other.flightNumber),
-          whence(other.whence),
-          whither(other.whither),
-          intermediateStops(other.intermediateStops),
-          departureTime(other.departureTime),
-          flightDays(other.flightDays),
-          availableSeats(other.availableSeats),
-          seats(other.seats),
-          plane(other.plane)
-{
+FlightModel::FlightModel(const FlightModel& other) {
+    flightNumber = other.flightNumber;
+    whence = other.whence;
+    whither = other.whither;
+    intermediateStops = other.intermediateStops;
+    departureTime = other.departureTime;
+    flightDays = other.flightDays;
+    availableSeats = other.availableSeats;
+    seats = other.seats;
+    plane = other.plane;
+
+    seats.clear();
+    for (const auto& seat : other.seats) {
+        seats.push_back(std::make_shared<TicketModel>(*seat));
+    }
 }
+
 
 FlightModel::FlightModel(FlightModel&& other) noexcept
         : flightNumber(other.flightNumber),
@@ -83,10 +88,12 @@ std::string FlightModel::formatData(const FlightModel& model) {
     data += "Flight Days: " + timeToString(model.flightDays) + "\n";
     data += "Available Seats: " + std::to_string(model.availableSeats) + "\n";
 
-    for (const TicketModel& ticket : model.seats)
-    {
-        data += "Ticket Information: " + ticket.toString() + "\n";
+    for (const auto& ticketPtr : model.seats) {
+        if (ticketPtr) {
+            data += "Ticket Information: " + ticketPtr->toString() + "\n";
+        }
     }
+
 
     data += "Plane: " + model.plane.toString();
 
@@ -150,7 +157,7 @@ FlightModel FlightModel::fromFile(const std::filesystem::path& filePath) {
             std::string ticketInformation = line.substr(line.find(':') + 1);
             ticketInformation.erase(0, ticketInformation.find_first_not_of(" \t"));
 
-            model.seats.push_back(TicketModel::fromString(ticketInformation));
+            model.seats.push_back(std::make_shared<TicketModel>(TicketModel::fromString(ticketInformation)));
         }
         if (line.find("Plane:") != std::string::npos) {
             std::string plane = line.substr(line.find(':') + 1);
@@ -244,4 +251,24 @@ std::string FlightModel::getFlight(const FlightModel &model) {
            << "Plane: " << model.getPlane().toString() << " | ";
 
     return result.str();
+}
+
+FlightModel &FlightModel::operator=(const FlightModel &other) {
+    if (this != &other) {
+        flightNumber = other.flightNumber;
+        whence = other.whence;
+        whither = other.whither;
+        intermediateStops = other.intermediateStops;
+        departureTime = other.departureTime;
+        flightDays = other.flightDays;
+        availableSeats = other.availableSeats;
+
+        seats.clear();
+        for (const auto& ticket : other.seats) {
+            seats.push_back(std::make_shared<TicketModel>(*ticket));
+        }
+
+        plane = other.plane;
+    }
+    return *this;
 }

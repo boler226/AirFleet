@@ -25,19 +25,19 @@ private:
     std::time_t departureTime;	// Час відправлення
     std::time_t  flightDays;	// Дні польоту
     int availableSeats;	// Кількість вільних місць
-    std::vector<TicketModel> seats;
+    std::vector<std::shared_ptr<TicketModel>> seats; // Білети
     PlaneModel plane;	// Літак
 public:
     FlightModel();	// Конструктор за замовчуванням
     FlightModel(   // Конструктор з параметрами
             int flightNumber,
-            Destination whence,
-            Destination whither,
+            const Destination& whence,
+            const Destination& whither,
             const std::vector<Destination>& intermediateStops,
             const std::time_t& departureTime,
             const std::time_t& flightDays,
             int availableSeats,
-            const std::vector<TicketModel>& seats,
+            const std::vector<std::shared_ptr<TicketModel>>& seats,
             PlaneModel& plane
     );
     FlightModel(const FlightModel& other);	// Конструктор копіювання
@@ -51,8 +51,6 @@ public:
     static time_t stringToTime(const std::string& timeStr);
     static std::string getFlight(const FlightModel& model);
 
-
-
     // Setters
     void setFlightNumber(int number) { flightNumber = number; }
     void setWhence(const Destination& from) { whence = from; }
@@ -60,7 +58,7 @@ public:
     void setIntermediateStops(const std::vector<Destination>& stops) { intermediateStops = stops; }
     void setDepartureTime(std::time_t time) { departureTime = time; }
     void setFlightDays(std::time_t days) { flightDays = days; }
-    void setAvailableSeats(int seats) { availableSeats = seats; }
+    void setAvailableSeats(int availableSeat) { availableSeats = availableSeat; }
     static void setSeats(const std::vector<TicketModel>& ticketSeats) { std::move(ticketSeats); }
     void setPlane(const PlaneModel& model) { plane = std::move(model); }
 
@@ -72,8 +70,10 @@ public:
     [[nodiscard]] std::time_t getDepartureTime() const { return departureTime; }
     [[nodiscard]] std::time_t getFlightDays() const { return flightDays; }
     [[nodiscard]] int getAvailableSeats() const { return availableSeats; }
-    [[nodiscard]] std::vector<TicketModel> getSeats() const { return seats; }
+    [[nodiscard]] std::vector<std::shared_ptr<TicketModel>> getSeats() const { return seats; }
     [[nodiscard]] PlaneModel getPlane() const { return plane; }
+
+    FlightModel& operator=(const FlightModel& other);
 };
 
 
