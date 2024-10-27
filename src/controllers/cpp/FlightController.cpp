@@ -132,3 +132,13 @@ std::future<std::vector<FlightModel>> FlightController::Filter(int minSeats, int
         return filteredFlights;
     });
 }
+
+std::future<std::optional<FlightModel>> FlightController::FindByNumber(int flightNumber) {
+    return std::async(std::launch::async, [this, flightNumber]() -> std::optional<FlightModel> {
+        auto it = flights.find(flightNumber);
+        if (it != flights.end()) {
+            return it->second;
+        }
+        return std::nullopt;
+    });
+}

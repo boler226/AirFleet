@@ -10,6 +10,7 @@
 #include <vector>
 #include <memory>
 #include <map>
+#include <optional>
 
 
 class FlightController {
@@ -25,6 +26,7 @@ public:
     std::future<std::string> Upload();
     std::future<std::vector<FlightModel>> Sort(const std::string &key);
     std::future<std::vector<FlightModel>> Filter(int minSeats, int maxSeats);
+    std::future<std::optional<FlightModel>> FindByNumber(int flightNumber);
 };
 
 #endif //AIRFLEET_FLIGHTCONTROLLER_H
