@@ -20,8 +20,7 @@ public:
     FlightController();
 
     std::future<void> List();
-    std::future<std::string> Create(const FlightModel& model);
-    std::future<std::string> Update(FlightModel model);
+    std::future<std::string> CreateOrUpdate(const FlightModel& model);
     std::future<std::string> Delete(int flightNumber);
 
     std::future<std::string> Upload();

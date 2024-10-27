@@ -18,12 +18,15 @@ std::future<void> FlightController::List() {
     });
 }
 
-std::future<std::string> FlightController::Create(const FlightModel& model) {
+std::future<std::string> FlightController::CreateOrUpdate(const FlightModel& model) {
     return std::async(std::launch::async, [this, model]() -> std::string {
-       flights.push_back(model);
-
-       FlightModel::saveDataToFile(model, "flight_data_" + std::to_string(model.getFlightNumber()) + ".txt");
-        return "Info: New flight was created.";
+        flights[model.getFlightNumber()] = model; // Додати або оновити рейс
+        FlightModel::saveDataToFile(model, "flight_data_" + std::to_string(model.getFlightNumber()) + ".txt");
+        if (flights.find(model.getFlightNumber()) != flights.end()) {
+            return "Info: Exist flight was changed.";
+        } else {
+            return "Info: New flight was created.";
+        }
     });
 }
 
