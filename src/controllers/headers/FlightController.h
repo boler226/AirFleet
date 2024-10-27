@@ -8,15 +8,16 @@
 #include "../../models/headers/FlightModel.h"
 #include <future>
 #include <vector>
+#include <memory>
+#include <map>
 
 
 class FlightController {
 private:
-    std::vector<FlightModel> flights;
+    std::map<int, FlightModel> flights;
+    std::filesystem::path infoPath;
 public:
     FlightController();
-    // FlightController(std::vector<FlightModel> flights);
-
 
     std::future<void> List();
     std::future<std::string> Create(const FlightModel& model);

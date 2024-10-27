@@ -7,11 +7,12 @@
 
 FlightController::FlightController() {
     Upload();
+    infoPath = std::filesystem::current_path().parent_path() / "info";
 }
 
 std::future<void> FlightController::List() {
     return std::async(std::launch::async, [this]() {
-        for (auto& flight : flights) {
+        for (const auto& [number, flight] : flights) {
             std::cout << FlightModel::getFlight(flight) << std::endl;
         }
     });
@@ -28,19 +29,14 @@ std::future<std::string> FlightController::Create(const FlightModel& model) {
 
 std::future<std::string> FlightController::Upload() {
     return std::async(std::launch::async, [this]() -> std::string {
-        std::filesystem::path folderPath = std::filesystem::current_path().parent_path() / "info";
-
-        std::string result;
-
-        if (!std::filesystem::exists(folderPath)) {
+        if (!std::filesystem::exists(infoPath)) {
             return "Error: Folder 'info' does not exist.";
         }
 
-        std::vector<std::future<std::string>> results;
-
-        for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        for (const auto& entry : std::filesystem::directory_iterator(infoPath)) {
             if (entry.is_regular_file()) {
-                flights.push_back(FlightModel::fromFile(entry.path()));
+                FlightModel flight = FlightModel::fromFile(entry.path());
+                flights[flight.getFlightNumber()] = flight;
             }
         }
 
