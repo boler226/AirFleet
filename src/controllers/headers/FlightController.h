@@ -22,6 +22,7 @@ public:
     std::future<void> List();
     std::future<std::string> CreateOrUpdate(const FlightModel& model);
     std::future<std::string> Delete(int flightNumber);
+    std::future<std::vector<FlightModel>> Sort(const std::string& key);
 
     std::future<std::string> Upload();
 };
