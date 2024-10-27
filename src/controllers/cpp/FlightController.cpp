@@ -46,3 +46,26 @@ std::future<std::string> FlightController::Upload() {
         return "Info: Data about flight's was uploaded from file.";
     });
 }
+
+std::future<std::string> FlightController::Delete(int flightNumber) {
+    return std::async(std::launch::async, [this, flightNumber]() ->std::string {
+        if (!std::filesystem::exists(infoPath)) {
+            return "Error: Folder 'info' does not exist.";
+        }
+
+        std::string fileName = "flight_data_" + std::to_string(flightNumber) + ".txt";
+        std::filesystem::path filePath = infoPath / fileName;
+
+        if (std::filesystem::exists(filePath)) {
+            std::filesystem::remove(filePath);
+
+            auto it = flights.find(flightNumber);
+            if (it != flights.end()) {
+                flights.erase(it);
+            }
+            return "Info: File " + fileName + " deleted successfully.";
+        } else {
+            return "Error: File " + fileName + " does not exist.";
+        }
+    });
+}
