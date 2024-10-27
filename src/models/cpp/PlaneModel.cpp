@@ -20,10 +20,9 @@ PlaneModel::PlaneModel(std::string name, int maxSeats)
 {
 }
 
-PlaneModel::PlaneModel(const PlaneModel& other)
-        : name(other.name),
-          maxSeats(other.maxSeats)
-{
+PlaneModel::PlaneModel(const PlaneModel& other) {
+    name = other.name;
+    maxSeats = other.maxSeats;
 }
 
 PlaneModel::PlaneModel(PlaneModel&& other) noexcept

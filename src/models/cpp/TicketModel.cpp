@@ -32,14 +32,13 @@ TicketModel::TicketModel(
 {
 }
 
-TicketModel::TicketModel(const TicketModel& other)
-        : firstName(other.firstName),
-          lastName(other.lastName),
-          seats(other.seats),
-          numberSeats(other.numberSeats),
-          whence(other.whence),
-          whither(other.whither)
-{
+TicketModel::TicketModel(const TicketModel& other) {
+    firstName = other.firstName;
+    lastName = other.lastName;
+    seats = other.seats;
+    numberSeats = other.numberSeats;
+    whence = other.whence;
+    whither = other.whither;
 }
 
 TicketModel::TicketModel(TicketModel &&other) noexcept
