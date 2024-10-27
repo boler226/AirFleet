@@ -120,3 +120,15 @@ std::future<std::vector<FlightModel>> FlightController::Sort(const std::string &
         return sortedFlights;
     });
 }
+
+std::future<std::vector<FlightModel>> FlightController::Filter(int minSeats, int maxSeats) {
+    return std::async(std::launch::async, [this, minSeats, maxSeats]() -> std::vector<FlightModel> {
+        std::vector<FlightModel> filteredFlights;
+        for (const auto& [_, flight] : flights) {
+            if (flight.getAvailableSeats() >= minSeats && flight.getAvailableSeats() <= maxSeats) {
+                filteredFlights.push_back(flight);
+            }
+        }
+        return filteredFlights;
+    });
+}
