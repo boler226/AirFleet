@@ -84,7 +84,7 @@ TicketModel TicketModel::fromString(const std::string& str) {
     std::stringstream model; // Для форматування складних рядків
     model << firstName << ", " << lastName << ", ";
 
-    for (int i = 0; i < seats.size(); i++) {
+    for (int i = 0; i < seats.size() - 1; i++) {
         model << seats[i];
         if (i != seats.size() - 1) {
             model << ", ";
