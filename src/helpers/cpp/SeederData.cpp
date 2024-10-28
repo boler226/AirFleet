@@ -1,7 +1,7 @@
 //
 // Created by User on 06.09.2024.
 //
-#include "SeederData.h"
+#include "../headers/SeederData.h"
 
 SeederData::SeederData() {
 
