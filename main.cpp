@@ -1,22 +1,11 @@
-#include "src/models/SeederData.h"
+#include "src/helpers/headers/SeederData.h"
+#include "src/helpers/headers/DisplayMenu.h"
 
 int main() {
     SeederData seeder;
-    FlightController controller;
-//
-    try {
-        std::string result = seeder.SeedData().get();
-        std::cout << "Result of seeding: " << result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Exception caught during get: " << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "Unknown exception caught during get" << std::endl;
-    }
+    DisplayMenu display;
 
-//    controller.List().get();
-
-//    std::cout << std::time(nullptr);
-//    std::cout <<FlightModel::timeToString(std::time(0));
-//    FlightModel::stringToTime("2024-10-25 20:06:23");
+    seeder.SeedData().get();
+    display.getMenu();
     return 0;
 }

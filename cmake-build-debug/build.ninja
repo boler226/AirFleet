@@ -85,11 +85,17 @@ build CMakeFiles/AirFleet.dir/src/controllers/cpp/FlightController.cpp.obj: CXX_
   OBJECT_DIR = CMakeFiles\AirFleet.dir
   OBJECT_FILE_DIR = CMakeFiles\AirFleet.dir\src\controllers\cpp
 
-build CMakeFiles/AirFleet.dir/src/models/SeederData.cpp.obj: CXX_COMPILER__AirFleet_unscanned_Debug C$:/Users/User/CLionProjects/AirFleet/src/models/SeederData.cpp || cmake_object_order_depends_target_AirFleet
-  DEP_FILE = CMakeFiles\AirFleet.dir\src\models\SeederData.cpp.obj.d
+build CMakeFiles/AirFleet.dir/src/helpers/cpp/SeederData.cpp.obj: CXX_COMPILER__AirFleet_unscanned_Debug C$:/Users/User/CLionProjects/AirFleet/src/helpers/cpp/SeederData.cpp || cmake_object_order_depends_target_AirFleet
+  DEP_FILE = CMakeFiles\AirFleet.dir\src\helpers\cpp\SeederData.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\AirFleet.dir
-  OBJECT_FILE_DIR = CMakeFiles\AirFleet.dir\src\models
+  OBJECT_FILE_DIR = CMakeFiles\AirFleet.dir\src\helpers\cpp
+
+build CMakeFiles/AirFleet.dir/src/helpers/cpp/DisplayMenu.cpp.obj: CXX_COMPILER__AirFleet_unscanned_Debug C$:/Users/User/CLionProjects/AirFleet/src/helpers/cpp/DisplayMenu.cpp || cmake_object_order_depends_target_AirFleet
+  DEP_FILE = CMakeFiles\AirFleet.dir\src\helpers\cpp\DisplayMenu.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\AirFleet.dir
+  OBJECT_FILE_DIR = CMakeFiles\AirFleet.dir\src\helpers\cpp
 
 
 # =============================================================================
@@ -99,7 +105,7 @@ build CMakeFiles/AirFleet.dir/src/models/SeederData.cpp.obj: CXX_COMPILER__AirFl
 #############################################
 # Link the executable AirFleet.exe
 
-build AirFleet.exe: CXX_EXECUTABLE_LINKER__AirFleet_Debug CMakeFiles/AirFleet.dir/main.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/FlightModel.cpp.obj CMakeFiles/AirFleet.dir/src/interfaces/Destination.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/PlaneModel.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/TicketModel.cpp.obj CMakeFiles/AirFleet.dir/src/controllers/cpp/FlightController.cpp.obj CMakeFiles/AirFleet.dir/src/models/SeederData.cpp.obj
+build AirFleet.exe: CXX_EXECUTABLE_LINKER__AirFleet_Debug CMakeFiles/AirFleet.dir/main.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/FlightModel.cpp.obj CMakeFiles/AirFleet.dir/src/interfaces/Destination.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/PlaneModel.cpp.obj CMakeFiles/AirFleet.dir/src/models/cpp/TicketModel.cpp.obj CMakeFiles/AirFleet.dir/src/controllers/cpp/FlightController.cpp.obj CMakeFiles/AirFleet.dir/src/helpers/cpp/SeederData.cpp.obj CMakeFiles/AirFleet.dir/src/helpers/cpp/DisplayMenu.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\AirFleet.dir

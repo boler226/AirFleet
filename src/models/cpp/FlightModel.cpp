@@ -80,18 +80,22 @@ std::string FlightModel::formatData(const FlightModel& model) {
     data += "Whence Time: " + model.whence.toString() + "\n";
     data += "Whither Time: " + model.whither.toString() + "\n";
 
-    for(int i = 0; i < model.intermediateStops.size(); i++)
+    if (model.intermediateStops.empty()) {
+        data += "Intermedia Stop: \n";
+    }
+    for(const auto & intermediateStop : model.intermediateStops)
     {
-        data += "Intermedia Stop: " + model.intermediateStops[i].toString() + "\n";
+        data += "Intermedia Stop: " + intermediateStop.toString() + "\n";
     }
     data += "Departure Time: " + timeToString(model.departureTime) + "\n";
     data += "Flight Days: " + timeToString(model.flightDays) + "\n";
     data += "Available Seats: " + std::to_string(model.availableSeats) + "\n";
 
+    if (model.seats.empty()) {
+        data += "Ticket Information: \n";
+    }
     for (const auto& ticketPtr : model.seats) {
-        if (ticketPtr) {
-            data += "Ticket Information: " + ticketPtr->toString() + "\n";
-        }
+        data += "Ticket Information: " + ticketPtr->toString() + "\n";
     }
 
 
@@ -157,7 +161,9 @@ FlightModel FlightModel::fromFile(const std::filesystem::path& filePath) {
             std::string ticketInformation = line.substr(line.find(':') + 1);
             ticketInformation.erase(0, ticketInformation.find_first_not_of(" \t"));
 
-            model.seats.push_back(std::make_shared<TicketModel>(TicketModel::fromString(ticketInformation)));
+            if (!ticketInformation.empty()) {
+                model.seats.push_back(std::make_shared<TicketModel>(TicketModel::fromString(ticketInformation)));
+            }
         }
         if (line.find("Plane:") != std::string::npos) {
             std::string plane = line.substr(line.find(':') + 1);
@@ -239,8 +245,9 @@ std::string FlightModel::getFlight(const FlightModel &model) {
     for (auto& stop : model.intermediateStops) {
         stops += stop.toString() + ", ";
     }
-    stops.resize(stops.size() - 2);
-
+    if (!model.intermediateStops.empty()) {
+        stops.resize(stops.size() - 2);
+    }
     result << "Flight Number: " << model.getFlightNumber() << " | "
            << "Whence: " << model.getWhence().toString() << " | "
            << "Whither: " << model.getWhither().toString() << " | "
