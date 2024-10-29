@@ -9,8 +9,6 @@
 class DisplayMenu {
 public:
     int getMenu();
-    static void waitForUserInput();
-
 };
 
 

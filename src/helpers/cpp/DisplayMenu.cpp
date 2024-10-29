@@ -200,7 +200,19 @@ int DisplayMenu::getMenu() {
                     }
                     break;
                 }
+                case 4: {  // Видалити рейс за номером
+                    int flightNumber;
+                    std::cout << "Enter the flight number to delete: ";
+                    std::cin >> flightNumber;
 
+                    try {
+                        std::future<std::string> deleteFuture = controller.Delete(flightNumber);
+                        std::cout << deleteFuture.get() << std::endl;
+                    } catch (const std::exception &e) {
+                        std::cerr << "Помилка: " << e.what() << std::endl;
+                    }
+                    break;
+                }
                 case 5: { // Сортування рейсів
                     std::string key;
                     std::cout << "Enter sort key (flightNumber, whither, availableSeats): ";
@@ -242,13 +254,4 @@ int DisplayMenu::getMenu() {
         }
     }
 
-}
-
-void DisplayMenu::waitForUserInput() {
-    char choice;
-    do {
-        std::cout << "\nEnter 'c' to continue:";
-        std::cin >> choice;
-    } while (choice != 'c');
-    system("clr");
 }
