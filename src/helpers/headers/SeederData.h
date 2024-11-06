@@ -11,7 +11,6 @@
 class SeederData {
 private:
     FlightController flightController;
-
 public:
     SeederData();
 

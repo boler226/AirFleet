@@ -1,7 +1,3 @@
-//
-// Created by User on 16.08.2024.
-//
-
 #include <regex>
 #include "../headers/FlightController.h"
 
@@ -17,9 +13,9 @@ std::future<void> FlightController::List() {
                 std::cout << FlightModel::getFlight(flight) << std::endl << std::endl;
             }
         } catch (const std::exception& ex) {
-            std::cerr << "Error listing flights: " << ex.what() << std::endl;
+            std::cerr << "Помилка списку рейсів: " << ex.what() << std::endl;
         } catch (...) {
-            std::cerr << "Unknown error occurred while listing flights." << std::endl;
+            std::cerr << "Під час створення списку рейсів сталася невідома помилка." << std::endl;
         }
     });
 }
@@ -31,14 +27,14 @@ std::future<std::string> FlightController::CreateOrUpdate(const FlightModel& mod
             FlightModel::saveDataToFile(model, "flight_data_" + std::to_string(model.getFlightNumber()) + ".txt");
 
             if (flights.find(model.getFlightNumber()) != flights.end()) {
-                return "Info: Existing flight was changed.";
+                return "Інформація: існуючий рейс змінено.";
             } else {
-                return "Info: New flight was created.";
+                return "Інформація: Створено новий рейс.";
             }
         } catch (const std::exception& ex) {
-            return "Error creating or updating flight: " + std::string(ex.what());
+            return "Помилка створення або оновлення рейсу: " + std::string(ex.what());
         } catch (...) {
-            return "Error: Unknown error occurred while creating or updating flight.";
+            return "Помилка: під час створення або оновлення рейсу сталася невідома помилка.";
         }
     });
 }
@@ -47,7 +43,7 @@ std::future<std::string> FlightController::Upload() {
     return std::async(std::launch::async, [this]() -> std::string {
         try {
             if (!std::filesystem::exists(infoPath)) {
-                return "Error: Folder 'info' does not exist.";
+                return "Помилка: папка \"info\" не існує.";
             }
 
             for (const auto& entry : std::filesystem::directory_iterator(infoPath)) {
@@ -57,11 +53,11 @@ std::future<std::string> FlightController::Upload() {
                 }
             }
 
-            return "Info: Data about flights was uploaded from file.";
+            return "Інформація: дані про рейси вивантажено з файлу.";
         } catch (const std::exception& ex) {
-            return "Error uploading flight data: " + std::string(ex.what());
+            return "Помилка завантаження даних рейсу: " + std::string(ex.what());
         } catch (...) {
-            return "Error: Unknown error occurred while uploading flight data.";
+            return "Помилка: під час завантаження даних польоту сталася невідома помилка.";
         }
     });
 }
@@ -70,7 +66,7 @@ std::future<std::string> FlightController::Delete(int flightNumber) {
     return std::async(std::launch::async, [this, flightNumber]() -> std::string {
         try {
             if (!std::filesystem::exists(infoPath)) {
-                return "Error: Folder 'info' does not exist.";
+                return "Помилка: папка \"info\" не існує.";
             }
 
             std::string fileName = "flight_data_" + std::to_string(flightNumber) + ".txt";
@@ -83,14 +79,14 @@ std::future<std::string> FlightController::Delete(int flightNumber) {
                 if (it != flights.end()) {
                     flights.erase(it);
                 }
-                return "Info: File " + fileName + " deleted successfully.";
+                return "Інформація: файл " + fileName + " успішно видалено.";
             } else {
-                return "Error: File " + fileName + " does not exist.";
+                return "Помилка: файл " + fileName + " не існує.";
             }
         } catch (const std::exception& ex) {
-            return "Error deleting flight: " + std::string(ex.what());
+            return "Помилка видалення рейсу: " + std::string(ex.what());
         } catch (...) {
-            return "Error: Unknown error occurred while deleting flight.";
+            return "Помилка: під час видалення рейсу сталася невідома помилка.";
         }
     });
 }

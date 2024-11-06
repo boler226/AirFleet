@@ -49,7 +49,6 @@ public:
     static void saveDataToFile(const FlightModel& model, const std::string& fileName);
     static std::string timeToString(time_t timeValue);
     static time_t stringToTime(const std::string& timeStr);
-    static std::string getFlight(const FlightModel& model);
 
     // Setters
     void setFlightNumber(int number) { flightNumber = number; }
@@ -63,6 +62,7 @@ public:
     void setPlane(const PlaneModel& model) { plane = std::move(model); }
 
     // Getters
+    static std::string getFlight(const FlightModel& model);
     [[nodiscard]] int getFlightNumber() const { return flightNumber; }
     [[nodiscard]] Destination getWhence() const { return whence; }
     [[nodiscard]] Destination getWhither() const { return whither; }

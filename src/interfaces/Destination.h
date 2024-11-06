@@ -24,7 +24,7 @@ private:
     static const std::unordered_map<std::string, CountryInfo> countries;
 public:
     Destination();
-    explicit Destination(CountryInfo  countryInfo);
+    explicit Destination(CountryInfo countryInfo);
 
     Destination& operator=(const Destination& other);
 
