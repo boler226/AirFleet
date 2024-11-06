@@ -9,6 +9,7 @@
 class DisplayMenu {
 public:
     int getMenu();
+    void getGuide();
 };
 
 
